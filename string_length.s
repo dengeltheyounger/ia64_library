@@ -1,4 +1,9 @@
-# Argument in rdi is pointed to string buffer to be counted
+# Function gets the number of characters in string up to first null terminator.
+# Argument in rdi is pointed to string buffer to be counted.
+# rax returns the number of elements up to first null terminator
+# Note that string_length preserves the address pointed to be rdi
+# This may be changed.
+
 .section .text
 	.global string_length
 string_length:

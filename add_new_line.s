@@ -1,5 +1,7 @@
+# This function adds a new line in the second to last element of the buffer given
 # rdi contains the buffer to which a new line is added
 # rsi contains the size of the string array
+# rax contains the buffer 
 
 .section .text
 	.global add_new_line

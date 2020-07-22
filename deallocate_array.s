@@ -1,5 +1,7 @@
+# This function deallocates memory that was allocated by sister function
 # rdi contains the zeroeth element of array to be deallocated
 # rsi contains the number of bytes allocated
+# Nothing is returned
 .section .data
 	badrequest:
 		.asciz "The requested number of bytes to be freed does not match the difference between current program break and desired program break. Error.\n"

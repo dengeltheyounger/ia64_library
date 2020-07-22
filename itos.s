@@ -1,4 +1,7 @@
+# This function converts an integer to a string. Up to 64 bits supported
 # rdi contains the integer to be stringified
+# rax contains a pointer to the zeroeth element of string
+# rdx contains the number of bytes allocated to provide string
 .section .data
 	badalloc:
 		.asciz "Failed to allocate requested memory\n"

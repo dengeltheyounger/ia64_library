@@ -1,4 +1,6 @@
+# Function prints a given null terminated buffer.
 # Argument in rdi is buffer to be printed.
+# Function returns the number of bytes written.
 .section .text
 	.global print
 print:

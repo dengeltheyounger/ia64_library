@@ -1,5 +1,8 @@
+# This function allocates the requested number of bytes
 # rdi represents the size of one element
 # rsi represents the number of array elements
+# rax contains a pointer to the first element of the newly allocated buffer
+# rdx contains the number of bytes allocated
 .section .data
 	notpowermsg:
 		.asciz "Array element size must be a power of 2.\n"
