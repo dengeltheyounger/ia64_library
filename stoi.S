@@ -5,9 +5,12 @@
 # Note that stoi will not account for any newlines at the end of the string
 # It does expect a null terminator, however.
 
+.include "prologue_epilogue.h"
+
 .section .text
 	.global stoi
 stoi:
+	prologue
 	# Get the string length
 	call	string_length
 	# discount null terminator at the end
@@ -50,6 +53,7 @@ check_digit:
 	jmp	to_int
 finished:
 	leaq	(%r9), %rdx
+	epilogue
 	ret
 negate:
 	imulq	$-1, %rax

@@ -2,12 +2,16 @@
 # rdi contains the base
 # rsi contains the exponent
 # rax:rdx contains the computed power
+
+.include "prologue_epilogue.h"
+
 .section .data
 	overflowfound:
 		.asciz "Overflow detected while computing power.\n"
 .section .text
 	.global power
 power:
+	prologue
 	# Check to see if exponent is 0
 	cmp	$0, %esi
 	# Return 1 if the exponent is zero
@@ -34,6 +38,7 @@ compute:
 zero_exponent:
 	# Set eax to 1 and return result
 	leal	(1), %eax
+	epilogue
 	ret
 overflow_found:
 	# Print overflow error and exit
@@ -42,3 +47,4 @@ overflow_found:
 	leal	(60), %eax
 	leal	(1), %edi
 	syscall
+	epilogue

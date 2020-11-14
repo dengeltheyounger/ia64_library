@@ -8,10 +8,13 @@
 # src (rsi) contains the destination buffer
 # bytes (rdx) contains the number of bytes to be copied
 
+.include "prologue_epilogue.h"
+
 .section	.text
 	.global memory_copy
 
 memory_copy:
+	prologue
 	leal	(%edx), %ecx
 	rep	movsb
 	leaq	(%rdi), %rax
@@ -19,4 +22,5 @@ memory_copy:
 	# and store address of dest buffer in %rax
 	negq	%rdx
 	leaq	(%rdi, %rdx), %rax
+	epilogue
 	ret

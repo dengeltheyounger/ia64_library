@@ -4,9 +4,13 @@
 # Note that string_length preserves the address pointed to be rdi
 # This may be changed.
 
+# includes macros for function prologues and epilogues
+.include "prologue_epilogue.h"
+
 .section .text
 	.global string_length
 string_length:
+	prologue
 	# rax will store counter
 	xorl	%eax, %eax
 check_null:
@@ -20,6 +24,7 @@ check_null:
 return_count:
 	# reset rdi to its previous location
 	subq	%rax, %rdi
-	# include null terminator in string length
+	# null terminator included in string length
 	incl	%eax
+	epilogue
 	ret

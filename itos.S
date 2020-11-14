@@ -2,15 +2,16 @@
 # rdi contains the integer to be stringified
 # rax contains a pointer to the zeroeth element of string
 # rdx contains the number of bytes allocated to provide string
+
+.include "prologue_epilogue.h"
+
 .section .data
 	badalloc:
 		.asciz "Failed to allocate requested memory\n"
 .section .text
 	.global itos
 itos:
-	# function prologue in case stack is used
-	push	%rbp	
-	movq	%rsp, %rbp
+	prologue
 	# Preserve whatever is in rbx
 	pushq	%rbx
 	# rbx now contains zero which indicates a positive number
@@ -18,7 +19,7 @@ itos:
 	movsx	%edi, %rdi
 	cmp	$0, %rdi
 	jg	setup
-	# if rax is negative, negate it
+	# negative rax if negative
 	negq	%rdi
 	# rbx now contains one which indicates a negative number
 	leal	(1), %ebx
@@ -109,8 +110,7 @@ exit:
 	# Restore rbx
 	popq	%rbx
 	# function epilogue
-	movq	%rbp, %rsp
-	popq	%rbp
+	epilogue
 	ret
 bad_alloc:
 	# Inform user that a bad allocation was made
@@ -120,3 +120,4 @@ bad_alloc:
 	leal	(60), %eax
 	leal	(1), %edi
 	syscall
+	epilogue
