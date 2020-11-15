@@ -3,6 +3,14 @@
 # rax contains the page size in kB
 .include	"prologue_epilogue.h"
 
+# I'm lazy and don't feel like writing this code twice
+.macro	pop_registers
+	popq	%r14
+	popq	%r13
+	popq	%r12
+	popq	%rbx
+.endm
+
 .section	.text
 	.global	get_page_size
 	
@@ -69,11 +77,13 @@ get_page_size:
 	exit:
 		# return page size
 		leaq	(%rbx), %rax
+		pop_registers
 		epilogue
 		ret
 	map_failed:
 		# return -1 to indicate that the mapping failed
 		leal	(-1), %eax
+		pop_registers
 		epilogue
 		ret
 		
