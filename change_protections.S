@@ -9,8 +9,15 @@
 
 change_protections:
 	prologue
-	# to be defined
+	# save the arguments before making the function call
+	pushq	%rdi
+	pushq	%rsi
+	pushq	%rdx
 	call	get_page_size
+	# restore arguments after making function call
+	popq	%rdx
+	popq	%rsi
+	popq	%rdi
 	# negate the page size
 	negq	%rax
 	# and it with rdi in order to align rdi on page boundary
