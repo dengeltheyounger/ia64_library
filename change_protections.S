@@ -21,7 +21,7 @@ change_protections:
 	negq	%rax
 	# set the length argument
 	leaq	(%rax), %rsi
-call_mprotect
+call_mprotect:
 	# syscall 10 for mprotect
 	leal	(10), %eax
 	syscall
