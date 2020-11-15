@@ -1,4 +1,4 @@
-# This macro defines the function prologue and epilogue
+# This macro defines the function prologue, epilogue, and exit routines
 
 .ifndef	PROLOGUE_EPILOGUE_H
 .set	PROLOGUE_EPILOGUE_H, 1
@@ -11,7 +11,6 @@
 .macro	epilogue
 	movq	%rbp, %rsp
 	popq	%rbp
-	ret
 .endm
 
 .endif
